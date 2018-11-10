@@ -12,15 +12,15 @@ namespace PocketLib
         /// <summary>
         /// Возвращает аблолютные пути всех файлов в директории. В том числе и из вложеных директорий.
         /// </summary>
-        /// <param name="PathToDirectory">Путь к директории.</param>
+        /// <param name="pathToDirectory">Путь к директории.</param>
         /// <returns>Аблолютные пути всех файлов в даной директории.</returns>
-        public static IEnumerable<string> GetAllFileNamesFromDir(string PathToDirectory)
+        public static IEnumerable<string> GetAllFileNamesFromDir(string pathToDirectory)
         {
             List<string> files = new List<string>();
 
-            files.AddRange(Directory.GetFiles(PathToDirectory));
+            files.AddRange(Directory.GetFiles(pathToDirectory));
 
-            string[] subDirs = Directory.GetDirectories(PathToDirectory);
+            string[] subDirs = Directory.GetDirectories(pathToDirectory);
 
             for (int i = 0; i < subDirs.Length; i++)
                 files.AddRange(GetAllFileNamesFromDir(subDirs[i]));
@@ -31,15 +31,15 @@ namespace PocketLib
         /// <summary>
         /// Возвращает аблолютные пути всех файлов в директории. В том числе и из вложеных директорий.
         /// </summary>
-        /// <param name="Directory">Экземпляр директории.</param>
+        /// <param name="directory">Экземпляр директории.</param>
         /// <returns>Аблолютные пути всех файлов в даной директории.</returns>
-        public static IEnumerable<string> GetAllFilePath(this DirectoryInfo Directory)
+        public static IEnumerable<string> GetAllFilePath(this DirectoryInfo directory)
         {
             List<string> files = new List<string>();
 
-            files.AddRange(System.IO.Directory.GetFiles(Directory.FullName));
+            files.AddRange(System.IO.Directory.GetFiles(directory.FullName));
 
-            string[] subDirs = System.IO.Directory.GetDirectories(Directory.FullName);
+            string[] subDirs = System.IO.Directory.GetDirectories(directory.FullName);
 
             for (int i = 0; i < subDirs.Length; i++)
                 files.AddRange(GetAllFileNamesFromDir(subDirs[i]));
@@ -50,11 +50,11 @@ namespace PocketLib
         /// <summary>
         /// Возвращяет все файлы в директории. В том числе и из вложеных директорий.
         /// </summary>
-        /// <param name="PathToDirectory">Путь к директории.</param>
+        /// <param name="pathToDirectory">Путь к директории.</param>
         /// <returns>Все файлы в директории</returns>
-        public static IEnumerable<FileInfo> GetAllFilesFromDir(string PathToDirectory)
+        public static IEnumerable<FileInfo> GetAllFilesFromDir(string pathToDirectory)
         {
-            string[] fileNames = GetAllFileNamesFromDir(PathToDirectory).ToArray();
+            string[] fileNames = GetAllFileNamesFromDir(pathToDirectory).ToArray();
 
             FileInfo[] files = new FileInfo[fileNames.Length];
 
@@ -67,11 +67,11 @@ namespace PocketLib
         /// <summary>
         /// Возвращяет все файлы в директории. В том числе и из вложеных директорий.
         /// </summary>
-        /// <param name="Directory">Экземпляр директории.</param>
+        /// <param name="directory">Экземпляр директории.</param>
         /// <returns>Все файлы в директории</returns>
-        public static IEnumerable<FileInfo> GetAllFiles(this DirectoryInfo Directory)
+        public static IEnumerable<FileInfo> GetAllFiles(this DirectoryInfo directory)
         {
-            string[] fileNames = GetAllFileNamesFromDir(Directory.FullName).ToArray();
+            string[] fileNames = GetAllFileNamesFromDir(directory.FullName).ToArray();
 
             FileInfo[] files = new FileInfo[fileNames.Length];
 

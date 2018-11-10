@@ -19,7 +19,7 @@ namespace PocketLib
             return list.ToArray();
         }
 
-        public static void QuickSort<T>(this IEnumerable<T> source, bool Reverse = false) where T : IComparable<T>
+        public static void QuickSort<T>(this IEnumerable<T> source, bool reverse = false) where T : IComparable<T>
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -29,70 +29,74 @@ namespace PocketLib
             if (array.Length < 2) return;
 
             int c;
-            if (Reverse)
+            if (reverse)
                 c = PartitionR(array, 0, array.Length - 1);
             else
                 c = Partition(array, 0, array.Length - 1);
 
-            QuickSort(array, 0, c - 1, Reverse);
-            QuickSort(array, c + 1, array.Length - 1, Reverse);
+            QuickSort(array, 0, c - 1, reverse);
+            QuickSort(array, c + 1, array.Length - 1, reverse);
         }
 
-        public static void QuickSort<T>(this T[] Array, bool Reverse) where T : IComparable<T>
+        public static void QuickSort<T>(this T[] array, bool reverse) where T : IComparable<T>
         {
-            if (Array.Length < 2) return;
+            if (array.Length < 2) return;
 
             int c;
-            if (Reverse)
-                c = PartitionR(Array, 0, Array.Length - 1);
+            if (reverse)
+                c = PartitionR(array, 0, array.Length - 1);
             else
-                c = Partition(Array, 0, Array.Length - 1);
+                c = Partition(array, 0, array.Length - 1);
 
-            QuickSort(Array, 0, c - 1, Reverse);
-            QuickSort(Array, c + 1, Array.Length - 1, Reverse);
+            QuickSort(array, 0, c - 1, reverse);
+            QuickSort(array, c + 1, array.Length - 1, reverse);
         }
 
-        private static void QuickSort<T>(T[] Array, int First, int Last, bool Reverse) where T : IComparable<T>
+        private static void QuickSort<T>(T[] array, int first, int last, bool reverse) where T : IComparable<T>
         {
-            if (First >= Last) return;
+            if (first >= last) return;
 
             int c;
-            if (Reverse)
-                c = PartitionR(Array, First, Last);
+            if (reverse)
+                c = PartitionR(array, first, last);
             else
-                c = Partition(Array, First, Last);
+                c = Partition(array, first, last);
 
-            QuickSort(Array, First, c - 1, Reverse);
-            QuickSort(Array, c + 1, Last, Reverse);
+            QuickSort(array, first, c - 1, reverse);
+            QuickSort(array, c + 1, last, reverse);
         }
 
-        private static int Partition<T>(T[] Array, int First, int Last) where T : IComparable<T>
+        private static int Partition<T>(T[] array, int first, int last) where T : IComparable<T>
         {
-            int i = First;
-            for (int j = First; j <= Last; j++)
-                if (Array[j].CompareTo(Array[Last]) < 0)
+            if (array == null)
+            {
+                throw new ArgumentNullException(nameof(array));
+            }
+
+            int i = first;
+            for (int j = first; j <= last; j++)
+                if (array[j].CompareTo(array[last]) < 0)
                 {
-                    T t = Array[i];
-                    Array[i] = Array[j];
-                    Array[j] = t;
+                    T t = array[i];
+                    array[i] = array[j];
+                    array[j] = t;
                     i++;
                 }
             return i - 1;
         }
 
-        private static int PartitionR<T>(T[] Array, int First, int Last) where T : IComparable<T>
+        private static int PartitionR<T>(T[] array, int first, int last) where T : IComparable<T>
         {
-            int i = First;
-            for (int j = First; j <= Last; j++)
-                if (Array[j].CompareTo(Array[Last]) > 0)
+            int i = first;
+            for (int j = first; j <= last; j++)
+                if (array[j].CompareTo(array[last]) > 0)
                 {
-                    T t = Array[i];
-                    Array[i] = Array[j];
-                    Array[j] = t;
+                    T t = array[i];
+                    array[i] = array[j];
+                    array[j] = t;
                     i++;
                 }
             return i - 1;
         }
     }
 }
-

@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company />
+    <Authors>ByteCore</Authors>
+    <Copyright>© Кушнір Б.T. , 2018</Copyright>
+    <PackageId>ByteCore.PocketLib</PackageId>
+    <RepositoryUrl>https://github.com/8ByteCore8/PocketLib</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>PocketLib Pocket Lib</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
