@@ -1,8 +1,8 @@
-﻿using System;
+﻿//C#
+//© Кушнір Б.T. , 2018
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace PocketLib
 {
