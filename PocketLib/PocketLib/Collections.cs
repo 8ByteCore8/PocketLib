@@ -1,4 +1,6 @@
-﻿using System;
+﻿//C#
+//© Кушнір Б.T. , 2018
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +28,8 @@ namespace PocketLib
 
             T[] array = source.ToArray();
 
-            if (array.Length < 2) return;
+            if (array.Length < 2)
+                return;
 
             int c;
             if (reverse)
@@ -40,7 +43,8 @@ namespace PocketLib
 
         public static void QuickSort<T>(this T[] array, bool reverse) where T : IComparable<T>
         {
-            if (array.Length < 2) return;
+            if (array.Length < 2)
+                return;
 
             int c;
             if (reverse)
@@ -50,20 +54,6 @@ namespace PocketLib
 
             QuickSort(array, 0, c - 1, reverse);
             QuickSort(array, c + 1, array.Length - 1, reverse);
-        }
-
-        private static void QuickSort<T>(T[] array, int first, int last, bool reverse) where T : IComparable<T>
-        {
-            if (first >= last) return;
-
-            int c;
-            if (reverse)
-                c = PartitionR(array, first, last);
-            else
-                c = Partition(array, first, last);
-
-            QuickSort(array, first, c - 1, reverse);
-            QuickSort(array, c + 1, last, reverse);
         }
 
         private static int Partition<T>(T[] array, int first, int last) where T : IComparable<T>
@@ -97,6 +87,21 @@ namespace PocketLib
                     i++;
                 }
             return i - 1;
+        }
+
+        private static void QuickSort<T>(T[] array, int first, int last, bool reverse) where T : IComparable<T>
+        {
+            if (first >= last)
+                return;
+
+            int c;
+            if (reverse)
+                c = PartitionR(array, first, last);
+            else
+                c = Partition(array, first, last);
+
+            QuickSort(array, first, c - 1, reverse);
+            QuickSort(array, c + 1, last, reverse);
         }
     }
 }
