@@ -11,8 +11,6 @@ namespace PocketLib
     /// </summary>
     public static class FileSystem
     {
-        #region Public Methods
-
         /// <summary>
         /// Возвращает аблолютные пути всех файлов в директории. В том числе и из вложеных директорий.
         /// </summary>
@@ -84,7 +82,5 @@ namespace PocketLib
 
             return files;
         }
-
-        #endregion Public Methods
     }
 }
